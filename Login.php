@@ -18,15 +18,15 @@ session_start();//session starts here
 
 
     <!-- CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
-    <link href="assets/css/simple-line-icons.css" rel="stylesheet" media="screen">
-    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="css/simple-line-icons.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet">
 
     <!-- Custom styles CSS -->
-    <link href="assets/css/stlyee.css" rel="stylesheet" media="screen">
+    <link href="css/stlyee.css" rel="stylesheet" media="screen">
 
-    <script src="assets/js/modernizr.custom.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 </head>
 <style>
     .login-panel {
@@ -53,7 +53,7 @@ session_start();//session starts here
                     <h3 class="panel-title">Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" method="post" action="login.php">
+                    <form role="form" method="post" action="Login.php">
                         <fieldset>
                             <div class="form-group"  >
                                 <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -76,17 +76,17 @@ session_start();//session starts here
 </div>
 </div>
     </section>
-<script src="assets/js/jquery-1.11.1.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.parallax-1.1.3.js"></script>
-<script src="assets/js/imagesloaded.pkgd.js"></script>
-<script src="assets/js/jquery.sticky.js"></script>
-<script src="assets/js/smoothscroll.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/jquery.easypiechart.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-<script src="assets/js/jquery.cbpQTRotator.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.parallax-1.1.3.js"></script>
+<script src="js/imagesloaded.pkgd.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.easypiechart.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.cbpQTRotator.js"></script>
+<script src="js/custom.js"></script>
 
 
 </body>
@@ -95,15 +95,15 @@ session_start();//session starts here
 
 <?php
 
-$dbcon=mysqli_connect("localhost","root","");
+$dbcon=mysqli_connect("localhost","root","admin");
 mysqli_select_db($dbcon,"users");
 
 if(isset($_POST['login']))
 {
     $user_email=$_POST['email'];
-    $user_pass=$_POST['pass'];
+    $user_pass=md5($_POST['pass']);
 
-    $check_user="select * from users WHERE `Email`='$user_email'AND `Password`='$user_pass'";
+    $check_user="select * from users WHERE `Email`='$user_email'  AND `Password`='$user_pass'";
 
     $run=mysqli_query($dbcon,$check_user) or die(mysqli_error($dbcon));
     $mrow = mysqli_fetch_row($run);
@@ -111,9 +111,9 @@ if(isset($_POST['login']))
 
     if($mrow)
     {
-        echo "<script>window.open('Welcome.php','_self')</script>";
+        echo "<script>window.open('index.php','_self')</script>";
 
-        $_SESSION['email']=$user_email;//here session is used and value of $user_email store in $_SESSION.  
+        $_SESSION['email']=$user_email;//here session is used and value of $user_email store in $_SESSION.
 
     }
     else

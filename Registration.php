@@ -9,15 +9,15 @@
     <title>SignUp</title>
 
     <!-- CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
-    <link href="assets/css/simple-line-icons.css" rel="stylesheet" media="screen">
-    <link href="assets/css/animate.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="css/simple-line-icons.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet">
 
     <!-- Custom styles CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
 
-    <script src="assets/js/modernizr.custom.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 
 </head>
 <body>
@@ -41,7 +41,7 @@
                             <h class="panel-title">SignUp</h>
                         </div>
                         <div class="panel-body">
-                            <form role="form" method="post" action="registration.php">
+                            <form role="form" method="post" action="Registration.php">
                                 <fieldset>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Username" name="name" type="text" autofocus>
@@ -61,7 +61,7 @@
 
                                 </fieldset>
                             </form>
-                            <center><b>Already registered ?</b> <br></b><a href="login.php">Login here</a></center><!--for centered text-->
+                            <center><b>Already registered ?</b> <br></b><a href="Login.php">Login here</a></center><!--for centered text-->
                         </div>
                     </div>
                 </div>
@@ -73,23 +73,23 @@
 </section>
 
 
-<script src="assets/js/jquery-1.11.1.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.parallax-1.1.3.js"></script>
-<script src="assets/js/imagesloaded.pkgd.js"></script>
-<script src="assets/js/jquery.sticky.js"></script>
-<script src="assets/js/smoothscroll.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/jquery.easypiechart.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-<script src="assets/js/jquery.cbpQTRotator.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.parallax-1.1.3.js"></script>
+<script src="js/imagesloaded.pkgd.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.easypiechart.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.cbpQTRotator.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 </html>
 <?php
 
-$dbcon=mysqli_connect("localhost","root","");
+$dbcon=mysqli_connect("localhost","root","admin");
 mysqli_select_db($dbcon,"users");
 if(isset($_POST['register'])&& !empty($_POST['register']))
 {
@@ -136,7 +136,7 @@ if(isset($_POST['register'])&& !empty($_POST['register']))
         $insert_user="insert into users VALUES ('$user_name','$user_email','$user_pass')";
         if(mysqli_query($dbcon,$insert_user))
         {
-            echo"<script>window.open('welcome.php','_self')</script>";
+            echo"<script>window.open('index.php','_self')</script>";
         }
     }
 //insert the user into the database.  
